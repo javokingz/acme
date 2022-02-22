@@ -38,9 +38,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    #librerias agregadas para el proyecto
     'drf_yasg',
     #Apps del proyecto
     'users',
+    'categories',
+    
 ]
 
 MIDDLEWARE = [
