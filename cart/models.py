@@ -8,7 +8,6 @@ class Cart(models.Model):
     buyer = models.ForeignKey(User, on_delete=models.CASCADE)
     product = models.ForeignKey(Product, on_delete=SET_NULL, null=True)
     quantity = models.PositiveIntegerField(default=1)
-    paid = models.BooleanField(default=False)
     created = models.DateTimeField(auto_now_add=True)
     
     

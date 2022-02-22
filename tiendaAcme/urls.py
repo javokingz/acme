@@ -20,6 +20,7 @@ from drf_yasg import openapi
 
 from categories.api.router import router_categories
 from products.api.router import router_product
+from cart.api.router import router_cart
 
 
 schema_view = get_schema_view(
@@ -36,10 +37,11 @@ schema_view = get_schema_view(
 )
 urlpatterns = [
     path('admin/', admin.site.urls),
-
+    #Urls del API
     path('api/', include('users.api.router')),
     path('api/', include(router_categories.urls)),
     path('api/', include(router_product.urls)),
+    path('api/', include(router_cart.urls)),
     #Urls de la documentación drf_yasg
     path('docs/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
