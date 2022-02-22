@@ -12,3 +12,5 @@ class Product(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now_add=True)
     update = models.DateTimeField(auto_now=True)
+
+    
