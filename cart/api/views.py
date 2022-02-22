@@ -13,11 +13,11 @@ class CartApiViewSet(ModelViewSet):
     queryset = Cart.objects.all().order_by('id')
     serializer_class = CartSerializer
 
-    @action(methods=['get'], detail=False, url_path='checkout/(?P<id>[^/.]+)', url_name='checkout')
+    @action(methods=['get'], detail=False, url_path='checkout/(?P<userId>[^/.]+)', url_name='checkout')
     def checkout(self, request, *args, **kwargs):
 
         try:
-            user = User.objects.get(pk=int(kwargs.get('id')))
+            user = User.objects.get(pk=int(kwargs.get('userId')))
         except Exception as e:
             return Response(status=status.HTTP_404_NOT_FOUND,
                             data={'Error': str(e)})
