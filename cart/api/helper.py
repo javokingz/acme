@@ -25,16 +25,16 @@ class Helper:
     
     def calculate_cart_amount(self):
         for cart_product in self.cart_products:
-            self.cart_total_amount += cart_product.product.price * cart_product.quantity
+            self.cart_total_amount += cart_product.quantity
    
     def prepare_checkout_details(self):
         for cart_product in self.cart_products:
             self.checkout_details['product'].append({
                                                       
                                                       'product_id': cart_product.id,
-                                                      'product_name': cart_product.product.name,
+                                                      'product_name': cart_product.product,
                                                       'quantity': cart_product.quantity,
-                                                      'price': cart_product.product.price})
+                                                      'price': cart_product.product})
 
         self.checkout_details['total'].append({'total_price': self.cart_total_amount})
 
