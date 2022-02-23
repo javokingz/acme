@@ -1,15 +1,15 @@
-from rest_framework.viewsets import ModelViewSet
+from rest_framework import viewsets, status
+from django.db.models import Sum
 from rest_framework.response import Response
 from rest_framework.decorators import action
-from rest_framework import status 
-from users.models import User
-from products.models import Product
 from cart.models import Cart
+from users.models import User
 from cart.api.serializers import CartSerializer
-from .helper import CartHelper
+from cart.api.helper import Helper
 
 
-class CartApiViewSet(ModelViewSet):
+
+class CartApiViewSet(viewsets.ModelViewSet):
     queryset = Cart.objects.all().order_by('id')
     serializer_class = CartSerializer
 
@@ -22,11 +22,12 @@ class CartApiViewSet(ModelViewSet):
             return Response(status=status.HTTP_404_NOT_FOUND,
                             data={'Error': str(e)})
 
-        cart_helper = CartHelper(user)
-        checkout_details = cart_helper.prepare_cart_for_checkout()
+        cart_helper = Helper(user)
+        checkout_details = cart_helper.checkout()
 
         if not checkout_details:
             return Response(status=status.HTTP_404_NOT_FOUND,
-                            data={'error': 'Carrito vacio'})
+                            data={'error': 'Cart of user is empty.'})
 
         return Response(status=status.HTTP_200_OK, data={'checkout_details': checkout_details})
+       

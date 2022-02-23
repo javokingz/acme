@@ -1,7 +1,7 @@
 from cart.models import Cart
 
 
-class CartHelper:
+class Helper:
 
     def __init__(self, user):
         self.user = user
@@ -12,10 +12,10 @@ class CartHelper:
         self.checkout_details = {'product': [], 'total': [], 'amount': []}
 
     def checkout(self):
-        self.cart_product = Cart.objects.filter(user=self.user)
+        self.cart_products = Cart.objects.filter(user=self.user)
 
-        if not self.cart_items:
-            return False
+        if not self.cart_products:
+             return False
 
         self.calculate_cart_amount()
         self.prepare_checkout_details()
@@ -24,18 +24,18 @@ class CartHelper:
 
     
     def calculate_cart_amount(self):
-        for cart_product in self.cart_items:
-            self.cart_total_amount += cart_products.item.price * cart_products.quantity
+        for cart_product in self.cart_products:
+            self.cart_total_amount += cart_product.product.price * cart_product.quantity
    
     def prepare_checkout_details(self):
         for cart_product in self.cart_products:
-            self.checkout_details['products'].append({
+            self.checkout_details['product'].append({
                                                       
-                                                      'product_id': cart_products.item.id,
-                                                      'product_name': cart_products.item.title,
-                                                      'quantity': cart_products.quantity,
-                                                      'price': cart_products.price})
+                                                      'product_id': cart_product.id,
+                                                      'product_name': cart_product.product.name,
+                                                      'quantity': cart_product.quantity,
+                                                      'price': cart_product.product.price})
 
-        self.checkout_details['total'].append({'total_price': self.cart_base_total_amount})
+        self.checkout_details['total'].append({'total_price': self.cart_total_amount})
 
         

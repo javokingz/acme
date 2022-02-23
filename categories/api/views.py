@@ -10,4 +10,4 @@ class CategoryApiViewSet(ModelViewSet):
     permission_classes = [IsAdminOrNot]
     serializer_class = CategorySerializer
     queryset = Category.objects.all()
-    lookup_field = 'name'
+    lookup_field = 'id'

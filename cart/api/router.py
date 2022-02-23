@@ -5,10 +5,15 @@ from . import views
 from django.urls import include, path
 
 
+
+# router_cart = DefaultRouter()
+
+# router_cart.register(prefix='cart', basename='cart', viewset=CartApiViewSet)
+
 router_cart = routers.DefaultRouter()
 router_cart.register(r'cart', views.CartApiViewSet)
-#router_cart.register(r'user', views.UserViewSet)
+# # router_cart.register(r'user', views.UserApiViewSet)
 
-urlpatterns = [
-    path('', include((router_cart.urls, 'cart'))),
-]
+# urlpatterns = [
+#     path('', include((router_cart.urls, 'cart'))),
+# ]
