@@ -9,7 +9,7 @@ class Product(models.Model):
     description = models.TextField()
     price = models.PositiveIntegerField()
     stock = models.PositiveIntegerField()
-    available = models.BooleanField(default=True)
+    
     category = models.ForeignKey(Category, on_delete=SET_NULL, null=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now_add=True)
